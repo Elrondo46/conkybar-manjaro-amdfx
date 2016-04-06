@@ -1,0 +1,60 @@
+conky.config = {
+-- ------------------------- Windows Settings
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	double_buffer = true,
+	background = true,
+
+-- ------------------------- Position
+	alignment = 'bottom_left',
+
+	minimum_width = 295,
+	minimum_height = 165,
+	maximum_width = 313,
+	gap_x = 626,
+	gap_y = 150,
+
+-- ------------------------- Font
+	use_xft = true,
+	xftalpha = 0.8,
+	override_utf8_locale = true,
+
+	draw_shades = true,
+	default_shade_color = 'black',
+
+	draw_borders = false,
+	draw_outline = false,
+
+	font = 'Monofur:bold:size=8',
+
+-- ------------------------ Colors
+	default_color = 'DCDCDC',
+	color0 = '1793d0',
+	color1 = 'DDDDDD',
+	color2 = 'AAAAAA',
+	color3 = '888888',
+
+-- ------------------------- Other
+	update_interval = 5,
+
+	template0 = [[${GOTO 50}${color\1}${top_mem name \2}${alignr}${top_mem mem \2}%]],
+
+	--top_name_verbose = false,
+	no_buffers = true,
+};
+
+conky.text = [[
+${voffset 25}${GOTO 50}${font}RAM
+${GOTO 50}${font}Usage: ${font Monofur:size=8}${memperc}% | ${mem}${font Monofur:size=7}${alignr}[+${buffers} +${cached}]${font Monofur:size=8}
+${voffset 27}${template0 0 1}
+${template0 1 2}
+${template0 2 3}
+${voffset 5}${GOTO 40}${color2}${GOTO 80}${cpu cpu1}${GOTO 105}${cpu cpu2}${GOTO 130}${cpu cpu3}${GOTO 155}${cpu cpu4}${GOTO 180}${cpu cpu5}${GOTO 205}${cpu cpu6}${GOTO 230}${cpu cpu7}${GOTO 255}${cpu cpu8} 
+${GOTO 85}${hwmon 0 temp 2}°C${GOTO 135}${hwmon 0 temp 3}°C${GOTO 185}${hwmon 0 temp 4}°C${GOTO 235}${hwmon 0 temp 5}°C
+${image ~/.conky/ConkyBar/img/ram.png -p 0,15}
+]];

@@ -1,0 +1,58 @@
+conky.config = {
+-- ------------------------- Windows Settings
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	double_buffer = true,
+	background = true,
+
+-- ------------------------- Position
+	alignment = 'bottom_left',
+
+	minimum_width = 313,
+        minimum_height = 165,
+	maximum_width = 313,
+	gap_x = 1565,
+	gap_y = 150,
+
+-- ------------------------- Font
+	use_xft = true,
+	xftalpha = 0.8,
+	override_utf8_locale = true,
+
+	draw_shades = true,
+	default_shade_color = 'black',
+
+	draw_borders = false,
+	draw_outline = false,
+
+	font = 'Monofur:bold:size=8',
+
+-- ------------------------- Color
+	default_color = 'DCDCDC',
+	color0 = '1793d0',
+	color1 = 'DDDDDD',
+	color2 = 'AAAAAA',
+	color3 = '888888',
+
+--------------------------- OTHER
+	update_interval = 1,
+
+	lua_load = '~/.conky/ConkyBar/lua/banshee_bar2.lua',
+	lua_draw_hook_pre = 'main_bars',
+
+};
+
+conky.text = [[
+${voffset 25}${GOTO 50}${font}Music${if_running banshee /usr/lib/banshee/Banshee.exe --redirect-log --play-enqueued } - ${exec ~/.conky/ConkyBar/scripts/conkyBanshee.py2 --datatype=ST}${endif}
+${GOTO 50}${font}Volume: ${font Monofur:size=8}${exec ~/.conky/ConkyBar/scripts/volume.sh}
+
+${if_running banshee /usr/lib/banshee/Banshee.exe --redirect-log --play-enqueued }${voffset 5}${execp ~/.conky/ConkyBar/scripts/conkyBanshee.py2 --template=~/.conky/ConkyBar/scripts/conkyBanshee2.template}${voffset 15}${else}${voffset 46}${endif}
+${GOTO 50}${font}Load:${font Monofur:size=8}${GOTO 95}${cpu cpu1}${GOTO 120}${cpu cpu2}${GOTO 145}${cpu cpu3}${GOTO 170}${cpu cpu4}${GOTO 195}${cpu cpu5}${GOTO 220}${cpu cpu6}${GOTO 245}${cpu cpu7}${GOTO 270}${cpu cpu8} 
+${GOTO 50}${font}Temp: ${font Monofur:size=8}${GOTO 100}${hwmon 0 temp 2}°C${GOTO 150}${hwmon 0 temp 3}°C${GOTO 200}${hwmon 0 temp 4}°C${GOTO 250}${hwmon 0 temp 5}°C
+${if_match "${exec ~/.conky/ConkyBar/scripts/volume.sh}"=="Muted"}${image ~/.conky/ConkyBar/img/mute.png -p 0,15}${else}${if_match "${exec ~/.conky/ConkyBar/scripts/volume.sh}">"50"}${image ~/.conky/ConkyBar/img/volumehigh.png -p 0,15}${else}${image ~/.conky/ConkyBar/img/volumemid.png -p 0,15}${endif}${endif}
+]];

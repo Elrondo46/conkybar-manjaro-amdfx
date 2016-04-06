@@ -1,0 +1,54 @@
+conky.config = {
+-- ------------------------- Windows Settings
+	own_window = true,
+	own_window_type = 'normal',
+	own_window_transparent = false,
+	own_window_hints = 'undecorated,sticky,below,skip_taskbar,skip_pager',
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+
+	double_buffer = true,
+	background = true,
+
+-- ------------------------- Position
+	alignment = 'bottom_left',
+
+	minimum_width = 240, 
+	minimum_height = 165,
+	maximum_width = 313,
+	gap_x = 60,
+	gap_y = 150,
+
+-- ------------------------- Font
+	use_xft = true,
+	xftalpha = 0.8,
+	override_utf8_locale = true,
+
+	draw_shades = true,
+	default_shade_color = 'black',
+
+	draw_borders = false,
+	draw_outline = false,
+
+	font = 'Monofur:bold:size=8',
+
+-- ------------------------ Colors
+	default_color = 'DCDCDC',
+	color0 = '008000',
+
+-- ------------------------- Other
+	update_interval = 1,
+};
+
+conky.text = [[
+${voffset 25}${GOTO 50}${font}System
+${GOTO 50}${font}Uptime: ${font Monofur:size=8}${uptime_short}${alignr}(${color0}${exec ~/.conky/ConkyBar/scripts/uptime.sh}${color})
+
+
+${font Monofur:size=8}${GOTO 50}${font}Processes: ${font Monofur:size=8}${processes} (${color0}${running_processes} ${color}running)
+${GOTO 50}${font}Threads: ${font Monofur:size=8}${running_threads}
+${GOTO 50}${font}Connections: ${font Monofur:size=8}${tcp_portmon 1 65535 count}
+
+${GOTO 50}${font}GPU: ${font Monofur:size=8}${nvidia temp}°C | ${font Monofur:size=8}${nvidia gpufreq}Mhz | ${execi 5 nvidia-settings -q [gpu:0]/UsedDedicatedGPUMemory -t}MiB
+${image ~/.conky/ConkyBar/img/system.png -p 0,15}
+]];

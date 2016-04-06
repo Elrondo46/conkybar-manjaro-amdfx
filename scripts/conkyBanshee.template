@@ -1,0 +1,3 @@
+${voffset -3}${goto 50}${color0}[--datatype=AR]
+${goto 50}${color1}[--datatype=TI]
+${voffset 27}${goto 50}[--datatype=PT] / [--datatype=LE]${alignr 7}[--datatype=PP]%
