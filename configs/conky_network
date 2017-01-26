@@ -43,7 +43,7 @@ conky.config = {
 
 conky.text = [[
 ${if_existing /proc/net/route enp9s0}${voffset 25}${GOTO 50}${font}Network
-${GOTO 50}${font}Public ip: ${font Monofur:size=8}${texeci 36000 wget -qO - http://ip.tupeux.com | tail}
+${GOTO 50}${font}Public ip: ${font Monofur:size=8}${texeci 36000 wget -qO - http://old-linux.com/ip/ | grep "Votre IP publique est" | cut -d ">" -f5| cut -d "<" -f1}
 ${voffset 85}${GOTO 50}${font}Recieve: ${font Monofur:size=8}${downspeed enp9s0}${GOTO 200}${font}Send: ${font Monofur:size=8}${upspeed enp9s0}
 ${image ~/.conky/ConkyBar/img/networkhigh.png -p 0,15}${else}${if_existing /proc/net/route wlp2s0}${voffset 25}${GOTO 50}${font}Network
 ${GOTO 50}${font}Public ip: ${font Monofur:size=8}$${texeci 36000 wget -qO - http://ip.tupeux.com | tail}${GOTO 200}${font}Sig: ${font Monofur:size=8}${wireless_link_qual_perc wlp2s0}%
